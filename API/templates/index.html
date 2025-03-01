@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Generate UI from Prompt</h1>
+    <form id="uiForm">
+        <textarea name="prompt" id="prompt" placeholder="Enter your UI prompt here..."></textarea>
+        <button type="submit">Generate UI</button>
+    </form>
+
+    <h2>Generated UI:</h2>
+    <div id="output-container"></div> <!-- Rendered UI will be inserted here -->
+
+    <script>
+        document.getElementById("uiForm").onsubmit = async function(e) {
+            e.preventDefault();
+            let prompt = document.getElementById("prompt").value;
+            let response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `prompt=${encodeURIComponent(prompt)}`
+            });
+    
+            let data = await response.json();
+            
+            // Extract code
+            let container = document.getElementById("output-container");
+            container.innerHTML = "";
+    
+            // Create a shadow DOM to isolate styles
+            let shadowHost = document.createElement("div");
+            container.appendChild(shadowHost);
+    
+            let shadowRoot = shadowHost.attachShadow({ mode: "open" });
+            
+            // Create a temporary element to parse the generated HTML
+            let tempDiv = document.createElement("div");
+            tempDiv.innerHTML = data.code;
+    
+            // Extract and isolate inline styles
+            let styleTags = tempDiv.getElementsByTagName("style");
+            if (styleTags.length > 0) {
+                let styleElement = document.createElement("style");
+                styleElement.innerHTML = styleTags[0].innerHTML;
+                shadowRoot.appendChild(styleElement);
+            }
+    
+            // Append the cleaned HTML inside the shadow DOM
+            shadowRoot.appendChild(tempDiv);
+        };
+    </script>
+    
+    
+</body>
+</html>
