@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Builder - Drag and Drop Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>UI Builder</h1>
+        <div class="actions">
+            <button class="btn btn-outline" id="previewBtn">Preview</button>
+            <button class="btn btn-primary" id="saveBtn">Save Design</button>
+        </div>
+    </div>
+    
+    <div class="components-panel">
+        <h2 class="panel-title">Components</h2>
+        
+        <div class="component-group">
+            <h3 class="panel-title">Layout</h3>
+            <div class="component-list">
+                <div class="component-item" draggable="true" data-type="container">
+                    <div class="component-icon">⊞</div>
+                    <span>Container</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="row">
+                    <div class="component-icon">⋐</div>
+                    <span>Row</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="column">
+                    <div class="component-icon">⋑</div>
+                    <span>Column</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-group">
+            <h3 class="panel-title">Basic Elements</h3>
+            <div class="component-list">
+                <div class="component-item" draggable="true" data-type="text">
+                    <div class="component-icon">T</div>
+                    <span>Text</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="heading">
+                    <div class="component-icon">H</div>
+                    <span>Heading</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="button">
+                    <div class="component-icon">⬚</div>
+                    <span>Button</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="input">
+                    <div class="component-icon">▭</div>
+                    <span>Input</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="image">
+                    <div class="component-icon">🖼</div>
+                    <span>Image</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-group">
+            <h3 class="panel-title">Components</h3>
+            <div class="component-list">
+                <div class="component-item" draggable="true" data-type="card">
+                    <div class="component-icon">⬞</div>
+                    <span>Card</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="navbar">
+                    <div class="component-icon">≡</div>
+                    <span>Navigation</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="form">
+                    <div class="component-icon">⊡</div>
+                    <span>Form</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="canvas-area">
+        <div class="canvas" id="canvas"></div>
+    </div>
+    
+    <div class="properties-panel">
+        <h2 class="panel-title">Properties</h2>
+        <div id="properties-content">
+            <p>No element selected</p>
+        </div>
+        
+        <div class="preview-container">
+            <h3 class="preview-title">Preview</h3>
+            <div class="preview-frame" id="preview-frame">
+                <div id="preview-content"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" data-action="cut">Cut</div>
+        <div class="context-menu-item" data-action="copy">Copy</div>
+        <div class="context-menu-item" data-action="paste">Paste</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" data-action="delete">Delete</div>
+        <div class="context-menu-item" data-action="bringToFront">Bring to Front</div>
+        <div class="context-menu-item" data-action="sendToBack">Send to Back</div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
