@@ -26,6 +26,65 @@
             border-right: 1px solid #ddd;
             overflow-y: auto;
             position: relative;
+            padding: 20px;
+        }
+
+        .color-input {
+            margin-bottom: 20px;
+        }
+
+        .color-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .color-input input {
+            margin-bottom: 10px;
+        }
+
+        .color-input button {
+            background-color: #7e3fb3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .color-input button:hover {
+            background-color: #6a2e9e;
+        }
+
+        .components-library {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .component-item {
+            background-color: white;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .component-item:hover {
+            box-shadow: 0 4px 8px rgba(126, 63, 179, 0.2);
+            transform: translateY(-2px);
         }
 
         .design-area {
@@ -34,6 +93,7 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .canvas {
@@ -42,91 +102,414 @@
             border-radius: 4px;
             position: relative;
             overflow: auto;
+            padding: 20px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #7e3fb3;
+        }
+
+        .component-preview {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
         .canvas-element {
             position: absolute;
-            cursor: move;
             min-width: 100px;
             min-height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: move;
             user-select: none;
-            z-index: 1;
-            resize: both;
-            overflow: hidden;
+            z-index: 10;
         }
-
-        .controls-panel {
-            width: 300px;
-            background: white;
-            padding: 20px;
-            border-left: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .control-button {
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            background-color: #7E3FB3;
+        
+        /* Fallback components styles */
+        .fallback-button {
+            background-color: var(--primary-color);
             color: white;
+            border: none;
+            padding: 10px 20px;
             border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .fallback-navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .fallback-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+        }
+        
+        .fallback-card-img {
+            height: 150px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fallback-card-content {
+            padding: 15px;
+        }
+        
+        .fallback-footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
             text-align: center;
         }
-
-        .control-button:hover {
-            background-color: #5e2a8a;
+        
+        .fallback-input {
+            margin-bottom: 15px;
+        }
+        
+        .fallback-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .fallback-input input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .fallback-cta {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        
+        .fallback-cta h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Components</h2>
-        <div class="component-item" draggable="true" data-component="primary-button">Button</div>
+        <div class="color-input">
+            <label for="colorPicker">Select Primary Color:</label>
+            <input type="color" id="colorPicker" value="#7e3fb3">
+            <label for="secondaryColor">Select Secondary Color (optional):</label>
+            <input type="color" id="secondaryColor" value="#f0e6ff">
+            <button onclick="fetchComponents()">Generate Components</button>
+        </div>
+
+        <div id="loading" class="loading">Generating components...</div>
+        <div class="components-library">Generated Components</div>
+        <div class="component-grid" id="componentsContainer"></div>
     </div>
 
     <div class="design-area">
-        <h2>Design</h2>
         <div class="canvas" id="canvas"></div>
     </div>
 
-    <div class="controls-panel" id="controls">
-        <h3>Controls</h3>
-        <button class="control-button" id="copy">Copy</button>
-        <button class="control-button" id="delete">Delete</button>
-    </div>
-
     <script>
-        let selectedElement = null;
+        // Define fallback components in case the API fails
+        const fallbackComponents = [
+            {
+                type: "navbar",
+                name: "Navigation Bar",
+                html: `<div style="background-color: var(--primary-color); color: white; padding: 15px; display: flex; justify-content: space-between; width: 100%;">
+                    <div style="font-weight: bold; font-size: 1.2rem;">Logo</div>
+                    <div style="display: flex; gap: 20px;">
+                        <div>Home</div>
+                        <div>About</div>
+                        <div>Services</div>
+                        <div>Contact</div>
+                    </div>
+                </div>`
+            },
+            {
+                type: "button",
+                name: "Primary Button",
+                html: `<button style="background-color: var(--primary-color); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Click Me</button>`
+            },
+            {
+                type: "card",
+                name: "Card Component",
+                html: `<div style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; width: 300px;">
+                    <div style="height: 150px; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center;">Image Placeholder</div>
+                    <div style="padding: 15px;">
+                        <h3 style="margin-bottom: 10px; color: var(--primary-color);">Card Title</h3>
+                        <p style="color: #555;">This is a sample card component with an image placeholder, title, and text content.</p>
+                    </div>
+                </div>`
+            },
+            {
+                type: "footer",
+                name: "Footer",
+                html: `<div style="background-color: var(--primary-color); color: white; padding: 20px; text-align: center; width: 100%;">
+                    <div style="margin-bottom: 15px;">© 2025 VisionUI. All rights reserved.</div>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <div>Terms</div>
+                        <div>Privacy</div>
+                        <div>Contact</div>
+                    </div>
+                </div>`
+            },
+            {
+                type: "input",
+                name: "Form Input",
+                html: `<div style="margin-bottom: 15px; width: 300px;">
+                    <label style="display: block; margin-bottom: 5px;">Email Address</label>
+                    <input style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; border-color: var(--primary-color);" type="email" placeholder="Enter your email">
+                </div>`
+            },
+            {
+                type: "cta",
+                name: "Call to Action",
+                html: `<div style="background-color: var(--secondary-color); padding: 30px; text-align: center; border-radius: 8px; width: 100%;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 15px;">Subscribe to Our Newsletter</h2>
+                    <p style="margin-bottom: 20px;">Stay updated with our latest news and updates.</p>
+                    <button style="background-color: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 4px; cursor: pointer;">Subscribe Now</button>
+                </div>`
+            }
+        ];
 
-        document.getElementById('canvas').addEventListener('click', (e) => {
-            if (e.target.classList.contains('canvas-element')) {
-                selectedElement = e.target;
-            } else {
-                selectedElement = null;
+        async function fetchComponents() {
+            const primaryColor = document.getElementById('colorPicker').value;
+            const secondaryColor = document.getElementById('secondaryColor').value;
+            const loadingElement = document.getElementById('loading');
+            const componentsContainer = document.getElementById('componentsContainer');
+            
+            // Set CSS variables for fallback components
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
+            document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+            
+            // Show loading
+            loadingElement.style.display = 'block';
+            componentsContainer.innerHTML = '';
+            
+            try {
+                const apiKey = "AIzaSyAcUQ5ZMhB4byYzlNp7jZIBC1Fx_rYzp1Y"; // Replace with your actual API key
+                const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`;
+
+                const prompt = `Generate 6 different UI components using the primary color ${primaryColor} and secondary color ${secondaryColor}. 
+                I need:
+                1. A navigation bar
+                2. A primary button
+                3. A card component with image placeholder, title, and text
+                4. A footer
+                5. A form input field with label
+                6. A call-to-action banner
+                
+                For each component, provide the complete HTML and CSS code as inline styles. Make them look modern and professional.
+                Format your response as a JSON array with objects containing: 
+                { 
+                  "type": "component-type", 
+                  "name": "Component Name", 
+                  "html": "complete-html-code-including-inline-styles"
+                }
+                
+                Only respond with the JSON array, nothing else. No markdown, no explanations.`;
+
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (!data.candidates || data.candidates.length === 0 || 
+                    !data.candidates[0].content || !data.candidates[0].content.parts || 
+                    data.candidates[0].content.parts.length === 0) {
+                    throw new Error("Invalid API response format");
+                }
+                
+                // Get the text response
+                const text = data.candidates[0].content.parts[0].text;
+                
+                // Try different approaches to extract JSON
+                let components;
+                try {
+                    // First attempt: Direct JSON parsing
+                    components = JSON.parse(text);
+                } catch (e) {
+                    // Second attempt: Extract JSON from markdown
+                    const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/) || 
+                                     text.match(/\[\s*\{\s*"type"/);
+                    
+                    if (jsonMatch) {
+                        const jsonText = jsonMatch[1] || jsonMatch[0];
+                        try {
+                            components = JSON.parse(jsonText.trim());
+                        } catch (e2) {
+                            // Third attempt: Clean up the text and try again
+                            const cleanedText = text.replace(/```json|```/g, '').trim();
+                            components = JSON.parse(cleanedText);
+                        }
+                    } else {
+                        throw new Error("Could not extract JSON from response");
+                    }
+                }
+                
+                // Validate components
+                if (!Array.isArray(components) || components.length === 0) {
+                    throw new Error("Invalid components array");
+                }
+                
+                // Create component items
+                createComponentItems(components, primaryColor, secondaryColor);
+                
+            } catch (error) {
+                console.error("Error fetching components:", error);
+                // Use fallback components instead
+                console.log("Using fallback components");
+                createComponentItems(fallbackComponents, primaryColor, secondaryColor);
+            } finally {
+                // Hide loading indicator
+                loadingElement.style.display = 'none';
+            }
+        }
+        
+        function createComponentItems(components, primaryColor, secondaryColor) {
+            const componentsContainer = document.getElementById('componentsContainer');
+            
+            components.forEach((component, index) => {
+                // Replace color variables in HTML if needed
+                let html = component.html;
+                html = html.replace(/var\(--primary-color\)/g, primaryColor);
+                html = html.replace(/var\(--secondary-color\)/g, secondaryColor);
+                
+                const componentItem = document.createElement('div');
+                componentItem.className = 'component-item';
+                componentItem.setAttribute('draggable', 'true');
+                
+                // Store the component data with updated HTML
+                const componentData = {
+                    ...component,
+                    html: html
+                };
+                componentItem.dataset.component = JSON.stringify(componentData);
+                
+                // Create a preview
+                const preview = document.createElement('div');
+                preview.className = 'component-preview';
+                preview.innerHTML = `<strong>${component.name}</strong>`;
+                
+                componentItem.appendChild(preview);
+                componentItem.addEventListener('dragstart', handleDragStart);
+                
+                componentsContainer.appendChild(componentItem);
+            });
+        }
+
+        function handleDragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.dataset.component);
+        }
+
+        document.getElementById('canvas').addEventListener('dragover', event => {
+            event.preventDefault();
+        });
+
+        document.getElementById('canvas').addEventListener('drop', event => {
+            event.preventDefault();
+            try {
+                const componentData = JSON.parse(event.dataTransfer.getData('text/plain'));
+                
+                // Create a container for the component
+                const container = document.createElement('div');
+                container.className = 'canvas-element';
+                
+                // Calculate position relative to canvas
+                const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+                const x = event.clientX - canvasRect.left;
+                const y = event.clientY - canvasRect.top;
+                
+                container.style.left = `${x}px`;
+                container.style.top = `${y}px`;
+                
+                // Add the component HTML
+                container.innerHTML = componentData.html;
+                
+                // Make the component movable
+                container.addEventListener('mousedown', initDrag);
+                
+                document.getElementById('canvas').appendChild(container);
+            } catch (error) {
+                console.error("Error dropping component:", error);
             }
         });
 
-        document.getElementById('delete').addEventListener('click', () => {
-            if (selectedElement) {
-                selectedElement.remove();
-                selectedElement = null;
+        function initDrag(event) {
+            // Prevent drag start on child elements
+            if (event.target !== event.currentTarget) {
+                // Allow normal interaction with inputs and buttons
+                if (event.target.tagName === 'INPUT' || 
+                    event.target.tagName === 'BUTTON' || 
+                    event.target.tagName === 'A') {
+                    return;
+                }
+                // For other elements, let the parent handle it
+                event.stopPropagation();
             }
-        });
+            
+            const element = event.currentTarget;
+            
+            // Get initial mouse position
+            const startX = event.clientX;
+            const startY = event.clientY;
+            
+            // Get initial element position
+            const startLeft = parseInt(element.style.left) || 0;
+            const startTop = parseInt(element.style.top) || 0;
+            
+            // Function to handle mouse movement
+            function moveElement(e) {
+                // Calculate new position
+                const newLeft = startLeft + (e.clientX - startX);
+                const newTop = startTop + (e.clientY - startY);
+                
+                // Set new position
+                element.style.left = `${newLeft}px`;
+                element.style.top = `${newTop}px`;
+            }
+            
+            // Function to remove event listeners when done dragging
+            function stopDrag() {
+                document.removeEventListener('mousemove', moveElement);
+                document.removeEventListener('mouseup', stopDrag);
+            }
+            
+            // Add event listeners
+            document.addEventListener('mousemove', moveElement);
+            document.addEventListener('mouseup', stopDrag);
+            
+            // Prevent default behavior
+            event.preventDefault();
+        }
 
-        document.getElementById('copy').addEventListener('click', () => {
-            if (selectedElement) {
-                let clone = selectedElement.cloneNode(true);
-                clone.style.left = parseInt(clone.style.left) + 10 + 'px';
-                clone.style.top = parseInt(clone.style.top) + 10 + 'px';
-                document.getElementById('canvas').appendChild(clone);
-            }
-        });
+        // Generate some initial components on page load
+        window.onload = function() {
+            fetchComponents();
+        };
     </script>
 </body>
 </html>
