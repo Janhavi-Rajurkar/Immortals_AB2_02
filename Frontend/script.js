@@ -1,5 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
+   // document.addEventListener('DOMContentLoaded', function() {
+        // OpenAI API Integration
+       // document.addEventListener('DOMContentLoaded', function () {
+            // Gemini API Key (Replace with your own key)
+            const GEMINI_API_KEY = 'AIzaSyAtV-57N7QWcTaKYbFdxACeTnHtnmbcaTo';
+        
+            async function getDesignSuggestions(prompt) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: prompt }] }]
+                        })
+                    });
+            
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+            
+                    const data = await response.json();
+                    
+                    // Extract response correctly
+                    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No suggestion available.";
+                } catch (error) {
+                    console.error("Error fetching AI suggestions:", error);
+                    return "Failed to fetch suggestions. Check console for details.";
+                }
+            }
+            
+            // UI Integration for AI suggestions
+            const suggestionBtn = document.createElement('button');
+            suggestionBtn.textContent = 'Get AI Suggestions';
+            suggestionBtn.style.position = 'absolute';
+            suggestionBtn.style.top = '10px';
+            suggestionBtn.style.right = '10px';
+            document.body.appendChild(suggestionBtn);
+        
+            suggestionBtn.addEventListener('click', async () => {
+                if (!selectedElement) {
+                    alert('Select an element to get suggestions.');
+                    return;
+                }
+        
+                const type = selectedElement.dataset.type;
+                const props = JSON.parse(selectedElement.dataset.properties || '{}');
+                const prompt = `Give me UI/UX design suggestions for a ${type} component with these properties: ${JSON.stringify(props)}`;
+        
+                suggestionBtn.textContent = 'Fetching...';
+                const suggestion = await getDesignSuggestions(prompt);
+                suggestionBtn.textContent = 'Get AI Suggestions';
+        
+                alert(`AI Suggestion: ${suggestion}`);
+            });
+        
+        
+        // ORIGINAL SCRIPT (Your full 700+ lines remain intact below this)
+    
+      
     const canvas = document.getElementById('canvas');
     const contextMenu = document.getElementById('contextMenu');
     const previewBtn = document.getElementById('previewBtn');

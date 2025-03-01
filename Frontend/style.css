@@ -4,6 +4,22 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+#ai-suggestions-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #7c5dfa;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#ai-suggestions-btn:hover {
+    background-color: #5a3db5;
+}
 
 body {
     display: grid;
