@@ -19,85 +19,67 @@
             overflow: hidden;
         }
 
-        /* Sidebar styles */
         .sidebar {
-            width: 280px;
+            width: 320px;
             background-color: #f0e6ff;
             height: 100%;
             border-right: 1px solid #ddd;
             overflow-y: auto;
             position: relative;
-        }
-
-        .header {
             padding: 20px;
-            display: flex;
-            align-items: center;
         }
 
-        .back-button {
-            margin-right: 15px;
+        .color-input {
+            margin-bottom: 20px;
+        }
+
+        .color-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .color-input input {
+            margin-bottom: 10px;
+        }
+
+        .color-input button {
+            background-color: #7e3fb3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .project-name {
-            font-size: 1.2rem;
-            color: #333;
-            font-weight: 500;
+        .color-input button:hover {
+            background-color: #6a2e9e;
         }
 
         .components-library {
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
             font-size: 1.3rem;
             font-weight: 600;
             color: #333;
-        }
-
-        .search-container {
-            padding: 15px 20px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background-color: rgba(126, 63, 179, 0.15);
-            color: #333;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar svg {
-            margin-right: 10px;
-        }
-
-        .component-category {
-            padding: 15px 20px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #333;
+            margin-bottom: 10px;
         }
 
         .component-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            padding: 0 20px 20px;
         }
 
         .component-item {
             background-color: white;
             border-radius: 4px;
-            height: 80px;
+            padding: 10px;
             cursor: grab;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: all 0.2s;
+            overflow: hidden;
         }
 
         .component-item:hover {
@@ -105,102 +87,14 @@
             transform: translateY(-2px);
         }
 
-        .component-item.button {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .component-item.primary-button {
-            background-color: #7E3FB3;
-            color: white;
-        }
-
-        .component-item.secondary-button {
-            border: 2px solid #7E3FB3;
-            color: #7E3FB3;
-        }
-
-        .component-item.magic-card {
-            background: linear-gradient(135deg, #7E3FB3 0%, #E91E85 100%);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .component-item.text-field {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ddd;
-        }
-
-        .component-item.image {
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .component-item.form {
-            background-color: white;
-            border: 1px solid #ddd;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .component-item.form::before {
-            content: "";
-            position: absolute;
-            width: 80%;
-            height: 12px;
-            background-color: #f5f5f5;
-            top: 15px;
-            left: 10%;
-        }
-
-        .component-item.form::after {
-            content: "";
-            position: absolute;
-            width: 80%;
-            height: 12px;
-            background-color: #f5f5f5;
-            top: 35px;
-            left: 10%;
-        }
-
-        /* Design area styles */
         .design-area {
             flex: 1;
             background-color: #222;
-            position: relative;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             height: 100%;
-        }
-
-        .design-title {
-            color: white;
-            padding: 20px;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .main-content {
-            display: flex;
-            flex: 1;
-            height: calc(100% - 60px);
-        }
-
-        .canvas-container {
-            flex: 1;
-            padding: 0 0 20px 20px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            min-width: 70%;
         }
 
         .canvas {
@@ -209,1067 +103,591 @@
             border-radius: 4px;
             position: relative;
             overflow: auto;
-        }
-
-        /* Properties panel */
-        .properties-panel {
-            width: 280px;
-            background-color: #2a2a2a;
-            height: 100%;
-            overflow-y: auto;
-            color: white;
             padding: 20px;
-        }
-
-        .properties-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-        }
-
-        .property-group {
-            margin-bottom: 20px;
-        }
-
-        .property-group-title {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-
-        .property-row {
-            display: flex;
-            margin-bottom: 12px;
-            align-items: center;
-        }
-
-        .property-label {
-            width: 90px;
-            font-size: 0.9rem;
-            color: #bbb;
-        }
-
-        .property-input {
-            flex: 1;
-        }
-
-        .property-input input, 
-        .property-input select {
+            min-width: 90%; /* Add this line */
             width: 100%;
-            padding: 6px 10px;
-            background-color: #333;
-            border: 1px solid #444;
-            border-radius: 4px;
-            color: white;
         }
 
-        .property-input input[type="color"] {
-            padding: 0;
-            height: 30px;
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: #7e3fb3;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        .component-preview {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        .action-button {
-            flex: 1;
-            padding: 8px;
-            border-radius: 4px;
-            background-color: #333;
-            border: 1px solid #444;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            transition: all 0.2s;
-        }
-
-        .action-button:hover {
-            background-color: #444;
-        }
-
-        .action-button.delete {
-            background-color: rgba(255, 50, 50, 0.2);
-            border: 1px solid rgba(255, 50, 50, 0.4);
-            color: #ff5050;
-        }
-
-        .action-button.delete:hover {
-            background-color: rgba(255, 50, 50, 0.3);
-        }
-
-        /* Draggable elements within the canvas */
         .canvas-element {
             position: absolute;
-            cursor: move;
             min-width: 100px;
             min-height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: move;
             user-select: none;
-            z-index: 1;
+            z-index: 10;
         }
-
-        .canvas-element.selected {
-            outline: 2px solid #7E3FB3;
-        }
-
-        .canvas-element.button {
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .canvas-element.primary-button {
-            background-color: #7E3FB3;
+        
+        /* Fallback components styles */
+        .fallback-button {
+            background-color: var(--primary-color);
             color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
         }
-
-        .canvas-element.secondary-button {
-            background-color: white;
-            border: 2px solid #7E3FB3;
-            color: #7E3FB3;
-        }
-
-        .canvas-element.text-button {
-            background-color: transparent;
-            color: #7E3FB3;
-        }
-
-        .canvas-element.magic-card {
-            background: linear-gradient(135deg, #7E3FB3 0%, #E91E85 100%);
+        
+        .fallback-navbar {
+            background-color: var(--primary-color);
             color: white;
-            padding: 16px;
-            border-radius: 8px;
-            min-width: 200px;
-            min-height: 120px;
-        }
-
-        .canvas-element.text-field {
-            background-color: white;
-            border: 1px solid #ddd;
-            min-width: 200px;
-            height: 40px;
-            border-radius: 4px;
-            padding: 8px;
-            color: #888;
-            justify-content: flex-start;
-        }
-
-        .canvas-element.image {
-            background-color: #f5f5f5;
-            min-width: 150px;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #888;
-            border-radius: 4px;
-        }
-
-        .canvas-element.form {
-            background-color: white;
-            min-width: 300px;
-            min-height: 200px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 16px;
-            display: block;
-        }
-
-        .form-field {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .navbar-container {
-            width: 100%;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
+        }
+        
+        .fallback-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+        }
+        
+        .fallback-card-img {
+            height: 150px;
+            background-color: var(--secondary-color);
+            display: flex;
             align-items: center;
-            padding: 10px 20px;
-            background-color: white;
-            border-bottom: 1px solid #eee;
+            justify-content: center;
         }
-
-        .navbar-logo {
-            width: 100px;
-            height: 30px;
-            background-color: #f5f5f5;
+        
+        .fallback-card-content {
+            padding: 15px;
         }
-
-        .navbar-menu {
-            width: 200px;
-            height: 30px;
-            background-color: #f5f5f5;
-        }
-
-        /* Resize handles */
-        .resize-handle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #7E3FB3;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .resize-handle.nw {
-            top: -5px;
-            left: -5px;
-            cursor: nwse-resize;
-        }
-
-        .resize-handle.ne {
-            top: -5px;
-            right: -5px;
-            cursor: nesw-resize;
-        }
-
-        .resize-handle.sw {
-            bottom: -5px;
-            left: -5px;
-            cursor: nesw-resize;
-        }
-
-        .resize-handle.se {
-            bottom: -5px;
-            right: -5px;
-            cursor: nwse-resize;
-        }
-
-        /* No properties message */
-        .no-selection-message {
-            color: #888;
+        
+        .fallback-footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.9rem;
         }
+        
+        .fallback-input {
+            margin-bottom: 15px;
+        }
+        
+        .fallback-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .fallback-input input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .fallback-cta {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        
+        .fallback-cta h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Device selector styles */
+    .device-selector {
+        margin-bottom: 20px;
+    }
+    
+    .device-selector label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .device-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: white;
+        margin-bottom: 10px;
+    }
+    
+    /* Canvas modifiers for device preview */
+    .canvas.desktop-view {
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .canvas.tablet-view {
+        max-width: 768px;
+        width: 708px; 
+        height: 1024px;
+        margin: 0 auto;
+        border: 10px solid #333;
+        border-radius: 10px;
+    }
+    
+    .canvas.mobile-view {
+        max-width: 375px;
+        width: 375px;
+        height: 667px;
+        margin: 0 auto;
+        border: 10px solid #333;
+        border-radius: 20px;
+    }
+    
+    /* Responsive component styles */
+    .responsive-navbar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .mobile-menu {
+        display: none;
+    }
+    
+    @media (max-width: 768px) {
+        .desktop-menu {
+            display: none;
+        }
+        
+        .mobile-menu {
+            display: block;
+        }
+    }
     </style>
 </head>
 <body>
-    <!-- Sidebar with components -->
     <div class="sidebar">
-        <div class="header">
-            <div class="back-button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 12H5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 19L5 12L12 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="project-name">project-name</div>
+        <div class="color-input">
+            <label for="colorPicker">Select Primary Color:</label>
+            <input type="color" id="colorPicker" value="#7e3fb3">
+            <label for="secondaryColor">Select Secondary Color (optional):</label>
+            <input type="color" id="secondaryColor" value="#f0e6ff">
+            <button onclick="fetchComponents()">Generate Components</button>
         </div>
-        
-        <div class="components-library">Components Library</div>
-        
-        <div class="search-container">
-            <div class="search-bar">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#7E3FB3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21 21L16.65 16.65" stroke="#7E3FB3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                search
-            </div>
-        </div>
-        
-        <div class="component-category">Navbar</div>
-        <div class="component-grid">
-            <div class="component-item navbar" draggable="true" data-component="navbar">
-                <div class="navbar-logo"></div>
-            </div>
-            <div class="component-item navbar" draggable="true" data-component="navbar-with-menu">
-                <div class="navbar-menu"></div>
-            </div>
-        </div>
-        
-        <div class="component-category">buttons</div>
-        <div class="component-grid">
-            <div class="component-item primary-button" draggable="true" data-component="primary-button">
-                Button
-            </div>
-            <div class="component-item secondary-button" draggable="true" data-component="secondary-button">
-                Button
-            </div>
-            <div class="component-item button" draggable="true" data-component="text-button">
-                Text Button
-            </div>
-        </div>
-        
-        <div class="component-category">magic card</div>
-        <div class="component-grid">
-            <div class="component-item magic-card" draggable="true" data-component="magic-card">
-                Magic Card
-            </div>
-            <div class="component-item magic-card" draggable="true" data-component="magic-card-alt" style="background: linear-gradient(135deg, #3F51B5 0%, #00BCD4 100%);">
-                Magic Card
-            </div>
+        <div class="device-selector">
+            <label for="deviceType">Select Device Type:</label>
+            <select id="deviceType" class="device-select">
+                <option value="desktop">Desktop</option>
+                <option value="tablet">Tablet</option>
+                <option value="mobile">Mobile</option>
+            </select>
         </div>
 
-        <div class="component-category">Form Elements</div>
-        <div class="component-grid">
-            <div class="component-item text-field" draggable="true" data-component="text-field">
-                Text Field
-            </div>
-            <div class="component-item image" draggable="true" data-component="image">
-                Image
-            </div>
-            <div class="component-item form" draggable="true" data-component="form">
-                
-            </div>
-        </div>
+        <div id="loading" class="loading">Generating components...</div>
+        <div class="components-library">Generated Components</div>
+        <div class="component-grid" id="componentsContainer"></div>
     </div>
-    
-    <!-- Design area -->
+
     <div class="design-area">
-        <div class="design-title">design</div>
-        <div class="main-content">
-            <div class="canvas-container">
-                <div class="canvas" id="canvas"></div>
-            </div>
-            
-            <!-- Properties panel -->
-            <div class="properties-panel">
-                <div class="properties-title">Properties</div>
-                
-                <div id="no-selection" class="no-selection-message">
-                    Select an element to edit its properties
-                </div>
-                
-                <div id="properties-content" style="display: none;">
-                    <div class="property-group">
-                        <div class="property-group-title">Dimensions</div>
-                        <div class="property-row">
-                            <div class="property-label">Width</div>
-                            <div class="property-input">
-                                <input type="number" id="width-input" min="20">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Height</div>
-                            <div class="property-input">
-                                <input type="number" id="height-input" min="20">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="property-group">
-                        <div class="property-group-title">Position</div>
-                        <div class="property-row">
-                            <div class="property-label">X</div>
-                            <div class="property-input">
-                                <input type="number" id="x-input" min="0">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Y</div>
-                            <div class="property-input">
-                                <input type="number" id="y-input" min="0">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="property-group">
-                        <div class="property-group-title">Appearance</div>
-                        <div class="property-row">
-                            <div class="property-label">Content</div>
-                            <div class="property-input">
-                                <input type="text" id="content-input">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Bg Color</div>
-                            <div class="property-input">
-                                <input type="color" id="bg-color-input">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Text Color</div>
-                            <div class="property-input">
-                                <input type="color" id="text-color-input">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Font Size</div>
-                            <div class="property-input">
-                                <input type="number" id="font-size-input" min="8" max="72">
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Border</div>
-                            <div class="property-input">
-                                <select id="border-input">
-                                    <option value="none">None</option>
-                                    <option value="1px solid #ddd">Thin</option>
-                                    <option value="2px solid #ccc">Medium</option>
-                                    <option value="3px solid #bbb">Thick</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="property-row">
-                            <div class="property-label">Radius</div>
-                            <div class="property-input">
-                                <input type="number" id="radius-input" min="0" max="50">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="action-button delete" id="delete-button">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 6H5H21" stroke="#ff5050" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="#ff5050" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Delete
-                        </button>
-                        <button class="action-button duplicate" id="duplicate-button">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 9H11C9.89543 9 9 9.89543 9 11V20C9 21.1046 9.89543 22 11 22H20C21.1046 22 22 21.1046 22 20V11C22 9.89543 21.1046 9 20 9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Duplicate
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="canvas" id="canvas"></div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('canvas');
-            let selectedElement = null;
-            let offsetX, offsetY;
-            let isDragging = false;
-            let isResizing = false;
-            let currentResizeHandle = null;
+    <!-- Modified JavaScript for device type handling -->
+<script>
+    // Add this to your existing JavaScript, right before the fetchComponents function
+    
+    function updateCanvasView() {
+        const deviceType = document.getElementById('deviceType').value;
+        const canvas = document.getElementById('canvas');
+        
+        // Remove all existing view classes
+        canvas.classList.remove('desktop-view', 'tablet-view', 'mobile-view');
+        
+        // Add the selected view class
+        canvas.classList.add(`${deviceType}-view`);
+    }
+    
+    // Modify your fetchComponents function to include device type
+    async function fetchComponents() {
+        const primaryColor = document.getElementById('colorPicker').value;
+        const secondaryColor = document.getElementById('secondaryColor').value;
+        const deviceType = document.getElementById('deviceType').value;
+        const loadingElement = document.getElementById('loading');
+        const componentsContainer = document.getElementById('componentsContainer');
+        
+        // Update canvas view when generating components
+        updateCanvasView();
+        
+        // Set CSS variables for fallback components
+        document.documentElement.style.setProperty('--primary-color', primaryColor);
+        document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+        
+        // Show loading
+        loadingElement.style.display = 'block';
+        componentsContainer.innerHTML = '';
+        
+        try {
+            const apiKey = "AIzaSyAcUQ5ZMhB4byYzlNp7jZIBC1Fx_rYzp1Y"; // Replace with your actual API key
+            const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`;
+
+            const prompt = `Generate 6 different responsive UI components optimized for ${deviceType} devices using the primary color ${primaryColor} and secondary color ${secondaryColor}. 
+            I need:
+            1. A responsive navigation bar with hamburger menu for mobile
+            2. A styled button with hover effects
+            3. A responsive card component with image placeholder, title, and text
+            4. A responsive footer with social media icons
+            5. A form input field with validation styling
+            6. A call-to-action banner with responsive layout
             
-            // Counter to generate unique IDs
-            let elementCounter = 0;
+            For each component, provide the complete HTML and CSS code as inline styles. Make them look modern and professional.
             
-            // Properties panel elements
-            const propertiesContent = document.getElementById('properties-content');
-            const noSelectionMessage = document.getElementById('no-selection');
-            const widthInput = document.getElementById('width-input');
-            const heightInput = document.getElementById('height-input');
-            const xInput = document.getElementById('x-input');
-            const yInput = document.getElementById('y-input');
-            const contentInput = document.getElementById('content-input');
-            const bgColorInput = document.getElementById('bg-color-input');
-            const textColorInput = document.getElementById('text-color-input');
-            const fontSizeInput = document.getElementById('font-size-input');
-            const borderInput = document.getElementById('border-input');
-            const radiusInput = document.getElementById('radius-input');
-            const deleteButton = document.getElementById('delete-button');
-            const duplicateButton = document.getElementById('duplicate-button');
+            For ${deviceType} view:
+            - Desktop: Full width components with standard navigation
+            - Tablet: Optimized for 768px width with slightly simplified layouts
+            - Mobile: Optimized for 375px width with stacked elements and hamburger menus
             
-            // Handle component drag from sidebar
-            const draggableItems = document.querySelectorAll('.component-item');
+            Format your response as a JSON array with objects containing: 
+            { 
+              "type": "component-type", 
+              "name": "Component Name", 
+              "html": "complete-html-code-including-inline-styles"
+            }
             
-            draggableItems.forEach(item => {
-                item.addEventListener('dragstart', function(e) {
-                    e.dataTransfer.setData('text/plain', this.getAttribute('data-component'));
-                    e.dataTransfer.effectAllowed = 'copy';
-                });
+            Only respond with the JSON array, nothing else. No markdown, no explanations.`;
+
+            const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }]
+                })
             });
+
+            // Rest of your existing fetch function...
+            if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (!data.candidates || data.candidates.length === 0 || 
+                    !data.candidates[0].content || !data.candidates[0].content.parts || 
+                    data.candidates[0].content.parts.length === 0) {
+                    throw new Error("Invalid API response format");
+                }
+                
+                // Get the text response
+                const text = data.candidates[0].content.parts[0].text;
+                
+                // Try different approaches to extract JSON
+                let components;
+                try {
+                    // First attempt: Direct JSON parsing
+                    components = JSON.parse(text);
+                } catch (e) {
+                    // Second attempt: Extract JSON from markdown
+                    const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/) || 
+                                     text.match(/\[\s*\{\s*"type"/);
+                    
+                    if (jsonMatch) {
+                        const jsonText = jsonMatch[1] || jsonMatch[0];
+                        try {
+                            components = JSON.parse(jsonText.trim());
+                        } catch (e2) {
+                            // Third attempt: Clean up the text and try again
+                            const cleanedText = text.replace(/```json|```/g, '').trim();
+                            components = JSON.parse(cleanedText);
+                        }
+                    } else {
+                        throw new Error("Could not extract JSON from response");
+                    }
+                }
+                
+                // Validate components
+                if (!Array.isArray(components) || components.length === 0) {
+                    throw new Error("Invalid components array");
+                }
+                
+                // Create component items
+                createComponentItems(components, primaryColor, secondaryColor);
+                
+
+        } catch (error) {
+            console.error("Error fetching components:", error);
+            // Use enhanced fallback components instead
+            console.log("Using fallback components");
+            createComponentItems(getResponsiveFallbackComponents(deviceType), primaryColor, secondaryColor);
+        } finally {
+            // Hide loading indicator
+            loadingElement.style.display = 'none';
+        }
+    }
+    
+    // Add this function to provide enhanced fallback components
+    function getResponsiveFallbackComponents(deviceType) {
+        // Base styles for different device types
+        const baseStyles = {
+            desktop: {
+                container: "width: 100%;",
+                navbar: "padding: 15px 40px;",
+                card: "width: 300px;",
+                cta: "padding: 40px; max-width: 1200px; margin: 0 auto;"
+            },
+            tablet: {
+                container: "width: 100%; max-width: 768px;",
+                navbar: "padding: 12px 20px;",
+                card: "width: 280px;",
+                cta: "padding: 30px; max-width: 700px; margin: 0 auto;"
+            },
+            mobile: {
+                container: "width: 100%; max-width: 375px;",
+                navbar: "padding: 10px 15px;",
+                card: "width: 100%;",
+                cta: "padding: 20px; width: 100%;"
+            }
+        };
+        
+        const styles = baseStyles[deviceType] || baseStyles.desktop;
+        
+        return [
+            {
+                type: "navbar",
+                name: "Responsive Navigation Bar",
+                html: `<div style="background-color: var(--primary-color); color: white; ${styles.navbar} display: flex; justify-content: space-between; align-items: center; ${styles.container}">
+                    <div style="font-weight: bold; font-size: 1.2rem;">VisionUI</div>
+                    <div class="desktop-menu" style="display: ${deviceType === 'mobile' ? 'none' : 'flex'}; gap: 20px;">
+                        <div style="cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.3s;">Home</div>
+                        <div style="cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.3s;">About</div>
+                        <div style="cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.3s;">Services</div>
+                        <div style="cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.3s;">Contact</div>
+                    </div>
+                    <div class="mobile-menu" style="display: ${deviceType === 'mobile' ? 'block' : 'none'}; cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 6H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 18H21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>`
+            },
+            {
+                type: "button",
+                name: "Enhanced Button",
+                html: `<button style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+                    <div style="position: relative; z-index: 2;">Get Started</div>
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.1); transform: translateY(100%); transition: transform 0.3s; z-index: 1;"></div>
+                </button>`
+            },
+            {
+                type: "card",
+                name: "Responsive Card",
+                html: `<div style="border-radius: 12px; overflow: hidden; ${styles.card} box-shadow: 0 8px 16px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s;">
+                    <div style="height: 180px; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <div style="font-size: 3rem; color: var(--primary-color); opacity: 0.5;">IMAGE</div>
+                    </div>
+                    <div style="padding: 20px;">
+                        <h3 style="margin-bottom: 12px; color: var(--primary-color); font-size: 1.25rem;">Card Title</h3>
+                        <p style="color: #555; line-height: 1.5; margin-bottom: 15px;">This responsive card adapts to different screen sizes while maintaining its visual appeal.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: var(--primary-color); font-weight: 500;">Learn more</span>
+                            <div style="width: 30px; height: 30px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">→</div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            {
+                type: "footer",
+                name: "Responsive Footer",
+                html: `<div style="background-color: var(--primary-color); color: white; padding: ${deviceType === 'mobile' ? '20px 15px' : '30px 40px'}; ${styles.container}">
+                    <div style="display: flex; flex-direction: ${deviceType === 'mobile' ? 'column' : 'row'}; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
+                        <div style="flex: 1; min-width: ${deviceType === 'mobile' ? '100%' : '200px'};">
+                            <h3 style="font-size: 1.25rem; margin-bottom: 15px;">VisionUI</h3>
+                            <p style="opacity: 0.8; line-height: 1.5;">Creating beautiful and responsive components for your next project.</p>
+                        </div>
+                        <div style="flex: 1; min-width: ${deviceType === 'mobile' ? '100%' : '200px'};">
+                            <h4 style="font-size: 1rem; margin-bottom: 15px;">Quick Links</h4>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <div>Home</div>
+                                <div>About</div>
+                                <div>Services</div>
+                                <div>Contact</div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; min-width: ${deviceType === 'mobile' ? '100%' : '200px'};">
+                            <h4 style="font-size: 1rem; margin-bottom: 15px;">Connect With Us</h4>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">X</div>
+                                <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">F</div>
+                                <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">I</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center;">
+                        © 2025 VisionUI. All rights reserved.
+                    </div>
+                </div>`
+            },
+            {
+                type: "input",
+                name: "Enhanced Form Input",
+                html: `<div style="margin-bottom: 20px; width: ${deviceType === 'mobile' ? '100%' : '300px'};">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+                    <div style="position: relative;">
+                        <input style="width: 100%; padding: 12px 16px; border: 2px solid var(--primary-color); border-radius: 6px; transition: all 0.3s; outline: none; padding-left: 40px;" type="email" placeholder="Enter your email">
+                        <div style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-color);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div style="margin-top: 6px; font-size: 0.8rem; color: #666;">We'll never share your email with anyone else.</div>
+                </div>`
+            },
+            {
+                type: "cta",
+                name: "Responsive CTA Banner",
+                html: `<div style="background-color: var(--secondary-color); ${styles.cta} border-radius: 12px; text-align: ${deviceType === 'mobile' ? 'center' : 'left'}; display: flex; flex-direction: ${deviceType === 'mobile' ? 'column' : 'row'}; align-items: ${deviceType === 'mobile' ? 'center' : 'flex-start'}; justify-content: space-between; gap: 20px;">
+                    <div style="flex: ${deviceType === 'mobile' ? '1' : '2'};">
+                        <h2 style="color: var(--primary-color); font-size: ${deviceType === 'mobile' ? '1.5rem' : '2rem'}; margin-bottom: 15px; font-weight: 700;">Start Building Today</h2>
+                        <p style="margin-bottom: 20px; line-height: 1.6; max-width: 600px;">Get started with our component library and create beautiful interfaces in minutes. Try it free for 14 days.</p>
+                        ${deviceType === 'mobile' ? '' : '<button style="background-color: var(--primary-color); color: white; border: none; padding: 12px 30px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">Get Started Free</button>'}
+                    </div>
+                    ${deviceType === 'mobile' ? '<button style="background-color: var(--primary-color); color: white; border: none; padding: 12px 30px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%;">Get Started Free</button>' : 
+                    '<div style="flex: 1; display: flex; justify-content: center; align-items: center;"><div style="width: 150px; height: 150px; background-color: rgba(255,255,255,0.5); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 3rem; transform: rotate(-5deg);">✨</div></div>'}
+                </div>`
+            }
+        ];
+    }
+
+    function createComponentItems(components, primaryColor, secondaryColor) {
+            const componentsContainer = document.getElementById('componentsContainer');
             
-            // Handle dropping onto canvas
-            canvas.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'copy';
+            components.forEach((component, index) => {
+                // Replace color variables in HTML if needed
+                let html = component.html;
+                html = html.replace(/var\(--primary-color\)/g, primaryColor);
+                html = html.replace(/var\(--secondary-color\)/g, secondaryColor);
+                
+                const componentItem = document.createElement('div');
+                componentItem.className = 'component-item';
+                componentItem.setAttribute('draggable', 'true');
+                
+                // Store the component data with updated HTML
+                const componentData = {
+                    ...component,
+                    html: html
+                };
+                componentItem.dataset.component = JSON.stringify(componentData);
+                
+                // Create a preview
+                const preview = document.createElement('div');
+                preview.className = 'component-preview';
+                preview.innerHTML = `<strong>${component.name}</strong>`;
+                
+                componentItem.appendChild(preview);
+                componentItem.addEventListener('dragstart', handleDragStart);
+                
+                componentsContainer.appendChild(componentItem);
             });
-            
-            canvas.addEventListener('drop', function(e) {
-                e.preventDefault();
-                const componentType = e.dataTransfer.getData('text/plain');
+        }
+
+        function handleDragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.dataset.component);
+        }
+
+        document.getElementById('canvas').addEventListener('dragover', event => {
+            event.preventDefault();
+        });
+
+        document.getElementById('canvas').addEventListener('drop', event => {
+            event.preventDefault();
+            try {
+                const componentData = JSON.parse(event.dataTransfer.getData('text/plain'));
+                
+                // Create a container for the component
+                const container = document.createElement('div');
+                container.className = 'canvas-element';
                 
                 // Calculate position relative to canvas
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+                const x = event.clientX - canvasRect.left;
+                const y = event.clientY - canvasRect.top;
                 
-                createComponent(componentType, x, y);
-            });
-            
-            // Create a new component
-            function createComponent(type, x, y) {
-                const element = document.createElement('div');
-                element.className = `canvas-element ${type}`;
-                element.id = `element-${elementCounter++}`;
-                element.dataset.type = type;
+                container.style.left = `${x}px`;
+                container.style.top = `${y}px`;
                 
-                // Set position
-                element.style.left = `${x}px`;
-                element.style.top = `${y}px`;
+                // Add the component HTML
+                container.innerHTML = componentData.html;
                 
-                // Set content based on type
-                switch(type) {
-                    case 'primary-button':
-                    case 'secondary-button':
-                    case 'text-button':
-                        element.textContent = 'Button';
-                        break;
-                    case 'magic-card':
-                        element.textContent = 'Magic Card';
-                        element.style.background = 'linear-gradient(135deg, #7E3FB3 0%, #E91E85 100%)';
-                        break;
-                    case 'magic-card-alt':
-                        element.textContent = 'Magic Card';
-                        element.style.background = 'linear-gradient(135deg, #3F51B5 0%, #00BCD4 100%)';
-                        break;
-                    case 'text-field':
-                        element.textContent = 'Text Field';
-                        break;
-                    case 'image':
-                        element.textContent = 'Image Placeholder';
-                        break;
-                    case 'form':
-                        element.innerHTML = `
-                            <div class="form-field">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-input" placeholder="Enter your name">
-                            </div>
-                            <div class="form-field">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-input" placeholder="Enter your email">
-                            </div>
-                            <div class="form-field">
-                                <button style="background-color: #7E3FB3; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
-                            </div>
-                        `;
-                        break;
-                    case 'navbar':
-                        const logo = document.createElement('div');
-                        logo.className = 'navbar-logo';
-                        element.appendChild(logo);
-                        element.style.width = '100%';
-                        element.style.height = '50px';
-                        element.style.top = '0';
-                        element.style.left = '0';
-                        element.style.display = 'flex';
-                        element.style.padding = '10px';
-                        element.style.backgroundColor = 'white';
-                        element.style.borderBottom = '1px solid #eee';
-                        break;
-                    case 'navbar-with-menu':
-                        const navContainer = document.createElement('div');
-                        navContainer.className = 'navbar-container';
-                        
-                        const navLogo = document.createElement('div');
-                        navLogo.className = 'navbar-logo';
-                        
-                        const navMenu = document.createElement('div');
-                        navMenu.className = 'navbar-menu';
-                        
-                        navContainer.appendChild(navLogo);
-                        navContainer.appendChild(navMenu);
-                        element.appendChild(navContainer);
-                        
-                        element.style.width = '100%';
-                        element.style.height = '50px';
-                        element.style.top = '0';
-                        element.style.left = '0';
-                        element.style.backgroundColor = 'white';
-                        break;
-                }
+                // Make the component movable
+                container.addEventListener('mousedown', initDrag);
                 
-                // Add resize handles
-                if (type !== 'navbar' && type !== 'navbar-with-menu') {
-                    addResizeHandles(element);
-                }
-                
-                // Make element movable
-                element.addEventListener('mousedown', startDrag);
-                
-                // Add to canvas
-                canvas.appendChild(element);
-                
-                // Select the new element
-                selectElement(element);
+                document.getElementById('canvas').appendChild(container);
+            } catch (error) {
+                console.error("Error dropping component:", error);
             }
+        });
 
-                        // Fix for navbar visibility
-            window.addEventListener('load', function() {
-                // Get all navbar elements
-                const navbars = document.querySelectorAll('.canvas-element.navbar-with-menu');
-                
-                if (navbars.length > 0) {
-                    // Set a visible background color
-                    navbars.forEach(navbar => {
-                        navbar.style.backgroundColor = '#ffffff';
-                        navbar.style.zIndex = '10';
-                        navbar.style.border = '1px solid #ddd';
-                        
-                        // Ensure the navbar container is styled properly
-                        const container = navbar.querySelector('.navbar-container');
-                        if (container) {
-                            container.style.display = 'flex';
-                            container.style.width = '100%';
-                        }
-                    });
-                } else {
-                    // Create a visible navbar if one doesn't exist
-                    createComponent('navbar-with-menu', 0, 0);
-                }
-            });
-            // Add resize handles to an element
-            function addResizeHandles(element) {
-                const positions = ['nw', 'ne', 'sw', 'se'];
-                
-                positions.forEach(pos => {
-                    const handle = document.createElement('div');
-                    handle.className = `resize-handle ${pos}`;
-                    handle.dataset.position = pos;
-                    
-                    handle.addEventListener('mousedown', function(e) {
-                        e.stopPropagation();
-                        startResize(e, element, pos);
-                    });
-                    
-                    element.appendChild(handle);
-                });
-            }
-            
-            // Start resizing an element
-            function startResize(e, element, position) {
-                e.preventDefault();
-                
-                // Select the element being resized
-                selectElement(element);
-                
-                isResizing = true;
-                currentResizeHandle = position;
-                
-                // Initial mouse position
-                const startX = e.clientX;
-                const startY = e.clientY;
-                
-                // Initial element dimensions and position
-                const rect = element.getBoundingClientRect();
-                const startWidth = rect.width;
-                const startHeight = rect.height;
-                const startLeft = parseInt(element.style.left);
-                const startTop = parseInt(element.style.top);
-                
-                // Resize handler
-                function onResize(e) {
-                    if (!isResizing) return;
-                    
-                    // Calculate mouse movement
-                    const dx = e.clientX - startX;
-                    const dy = e.clientY - startY;
-                    
-                    // Apply resize based on handle position
-                    if (position.includes('e')) {
-                        // East/right resize
-                        const newWidth = Math.max(50, startWidth + dx);
-                        element.style.width = `${newWidth}px`;
-                        widthInput.value = newWidth;
-                    }
-                    
-                    if (position.includes('s')) {
-                        // South/bottom resize
-                        const newHeight = Math.max(20, startHeight + dy);
-                        element.style.height = `${newHeight}px`;
-                        heightInput.value = newHeight;
-                    }
-                    
-                    if (position.includes('w')) {
-                        // West/left resize
-                        const newWidth = Math.max(50, startWidth - dx);
-                        const newLeft = startLeft + (startWidth - newWidth);
-                        element.style.width = `${newWidth}px`;
-                        element.style.left = `${newLeft}px`;
-                        widthInput.value = newWidth;
-                        xInput.value = newLeft;
-                    }
-                    
-                    if (position.includes('n')) {
-                        // North/top resize
-                        const newHeight = Math.max(20, startHeight - dy);
-                        const newTop = startTop + (startHeight - newHeight);
-                        element.style.height = `${newHeight}px`;
-                        element.style.top = `${newTop}px`;
-                        heightInput.value = newHeight;
-                        yInput.value = newTop;
-                    }
-                }
-                
-                // Finish resizing
-                function stopResize() {
-                    isResizing = false;
-                    document.removeEventListener('mousemove', onResize);
-                    document.removeEventListener('mouseup', stopResize);
-                }
-                
-                document.addEventListener('mousemove', onResize);
-                document.addEventListener('mouseup', stopResize);
-            }
-            
-            // Handle element dragging
-            function startDrag(e) {
-                e.preventDefault();
-                
-                // Don't start a drag if clicking on a resize handle
-                if (e.target.classList.contains('resize-handle')) {
+        function initDrag(event) {
+            // Prevent drag start on child elements
+            if (event.target !== event.currentTarget) {
+                // Allow normal interaction with inputs and buttons
+                if (event.target.tagName === 'INPUT' || 
+                    event.target.tagName === 'BUTTON' || 
+                    event.target.tagName === 'A') {
                     return;
                 }
-                
-                const element = this;
-                selectElement(element);
-                
-                isDragging = true;
-                
-                // Calculate offset from element's top-left corner
-                const rect = element.getBoundingClientRect();
-                offsetX = e.clientX - rect.left;
-                offsetY = e.clientY - rect.top;
-                
-                function onDrag(e) {
-                    if (!isDragging) return;
-                    
-                    // Calculate canvas-relative position
-                    const canvasRect = canvas.getBoundingClientRect();
-                    const x = e.clientX - canvasRect.left - offsetX;
-                    const y = e.clientY - canvasRect.top - offsetY;
-                    
-                    // Update element position
-                    element.style.left = `${Math.max(0, x)}px`;
-                    element.style.top = `${Math.max(0, y)}px`;
-                    
-                    // Update property inputs
-                    xInput.value = Math.max(0, x);
-                    yInput.value = Math.max(0, y);
-                }
-                
-                function stopDrag() {
-                    isDragging = false;
-                    document.removeEventListener('mousemove', onDrag);
-                    document.removeEventListener('mouseup', stopDrag);
-                }
-                
-                document.addEventListener('mousemove', onDrag);
-                document.addEventListener('mouseup', stopDrag);
+                // For other elements, let the parent handle it
+                event.stopPropagation();
             }
             
-            // Select an element and show its properties
-            function selectElement(element) {
-                // Deselect previous element
-                if (selectedElement) {
-                    selectedElement.classList.remove('selected');
-                }
+            const element = event.currentTarget;
+            
+            // Get initial mouse position
+            const startX = event.clientX;
+            const startY = event.clientY;
+            
+            // Get initial element position
+            const startLeft = parseInt(element.style.left) || 0;
+            const startTop = parseInt(element.style.top) || 0;
+            
+            // Function to handle mouse movement
+            function moveElement(e) {
+                // Calculate new position
+                const newLeft = startLeft + (e.clientX - startX);
+                const newTop = startTop + (e.clientY - startY);
                 
-                // Select new element
-                element.classList.add('selected');
-                selectedElement = element;
-                
-                // Show properties panel
-                noSelectionMessage.style.display = 'none';
-                propertiesContent.style.display = 'block';
-                
-                // Update property inputs
-                const rect = element.getBoundingClientRect();
-                widthInput.value = Math.round(rect.width);
-                heightInput.value = Math.round(rect.height);
-                xInput.value = parseInt(element.style.left);
-                yInput.value = parseInt(element.style.top);
-                
-                // Get computed styles
-                const style = window.getComputedStyle(element);
-                
-                // Update appearance inputs
-                if (element.dataset.type !== 'form' && element.dataset.type !== 'navbar' && element.dataset.type !== 'navbar-with-menu') {
-                    contentInput.value = element.textContent;
-                    contentInput.disabled = false;
-                } else {
-                    contentInput.value = '';
-                    contentInput.disabled = true;
-                }
-                
-                // Get background color (handle gradients specially)
-                if (element.style.background && element.style.background.includes('gradient')) {
-                    bgColorInput.value = '#7E3FB3'; // Default for gradient elements
-                } else {
-                    const bgColor = style.backgroundColor;
-                    const rgb = bgColor.match(/\d+/g);
-                    if (rgb && rgb.length >= 3) {
-                        const hex = rgbToHex(parseInt(rgb[0]), parseInt(rgb[1]), parseInt(rgb[2]));
-                        bgColorInput.value = hex;
-                    }
-                }
-                
-                // Text color
-                const textColor = style.color;
-                const rgb = textColor.match(/\d+/g);
-                if (rgb && rgb.length >= 3) {
-                    const hex = rgbToHex(parseInt(rgb[0]), parseInt(rgb[1]), parseInt(rgb[2]));
-                    textColorInput.value = hex;
-                }
-                
-                // Font size
-                const fontSize = parseInt(style.fontSize);
-                fontSizeInput.value = fontSize;
-                
-                // Border
-                if (element.style.border) {
-                    borderInput.value = element.style.border;
-                } else if (style.border !== 'none' && style.borderWidth !== '0px') {
-                    const closestOption = getClosestBorderOption(style.border);
-                    borderInput.value = closestOption;
-                } else {
-                    borderInput.value = 'none';
-                }
-                
-                // Border radius
-                const radius = parseInt(style.borderRadius);
-                radiusInput.value = isNaN(radius) ? 0 : radius;
+                // Set new position
+                element.style.left = `${newLeft}px`;
+                element.style.top = `${newTop}px`;
             }
             
-            // Convert RGB to HEX color
-            function rgbToHex(r, g, b) {
-                return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            // Function to remove event listeners when done dragging
+            function stopDrag() {
+                document.removeEventListener('mousemove', moveElement);
+                document.removeEventListener('mouseup', stopDrag);
             }
             
-            // Find closest border option
-            function getClosestBorderOption(border) {
-                const options = {
-                    'none': 'none',
-                    '1px solid #ddd': '1px solid #ddd',
-                    '2px solid #ccc': '2px solid #ccc',
-                    '3px solid #bbb': '3px solid #bbb'
-                };
-                
-                // Default to 'none' if no match
-                return options[border] || 'none';
-            }
+            // Add event listeners
+            document.getElementById('deviceType').addEventListener('change', updateCanvasView);
+            document.addEventListener('mousemove', moveElement);
+            document.addEventListener('mouseup', stopDrag);
             
-            // Handle clicking on the canvas (deselect)
-            canvas.addEventListener('click', function(e) {
-                if (e.target === canvas) {
-                    if (selectedElement) {
-                        selectedElement.classList.remove('selected');
-                        selectedElement = null;
-                        
-                        // Hide properties panel
-                        propertiesContent.style.display = 'none';
-                        noSelectionMessage.style.display = 'block';
-                    }
-                }
-            });
-            
-            // Property input handlers
-            widthInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.width = `${this.value}px`;
-                }
-            });
-            
-            heightInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.height = `${this.value}px`;
-                }
-            });
-            
-            xInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.left = `${this.value}px`;
-                }
-            });
-            
-            yInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.top = `${this.value}px`;
-                }
-            });
-            
-            contentInput.addEventListener('change', function() {
-                if (selectedElement && !contentInput.disabled) {
-                    selectedElement.textContent = this.value;
-                }
-            });
-            
-            bgColorInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    // Handle specially for gradient elements
-                    if (selectedElement.dataset.type === 'magic-card' || selectedElement.dataset.type === 'magic-card-alt') {
-                        // Keep the gradient but change the start color
-                        const endColor = selectedElement.dataset.type === 'magic-card' ? '#E91E85' : '#00BCD4';
-                        selectedElement.style.background = `linear-gradient(135deg, ${this.value} 0%, ${endColor} 100%)`;
-                    } else {
-                        selectedElement.style.backgroundColor = this.value;
-                    }
-                }
-            });
-            
-            textColorInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.color = this.value;
-                }
-            });
-            
-            fontSizeInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.fontSize = `${this.value}px`;
-                }
-            });
-            
-            borderInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.border = this.value;
-                }
-            });
-            
-            radiusInput.addEventListener('change', function() {
-                if (selectedElement) {
-                    selectedElement.style.borderRadius = `${this.value}px`;
-                }
-            });
-            
-            // Delete button handler
-            deleteButton.addEventListener('click', function() {
-                if (selectedElement) {
-                    selectedElement.remove();
-                    selectedElement = null;
-                    
-                    // Hide properties panel
-                    propertiesContent.style.display = 'none';
-                    noSelectionMessage.style.display = 'block';
-                }
-            });
-            
-            // Duplicate button handler
-            duplicateButton.addEventListener('click', function() {
-                if (selectedElement) {
-                    const original = selectedElement;
-                    const clone = original.cloneNode(true);
-                    
-                    // Generate new ID
-                    clone.id = `element-${elementCounter++}`;
-                    
-                    // Offset position slightly
-                    const originalLeft = parseInt(original.style.left);
-                    const originalTop = parseInt(original.style.top);
-                    clone.style.left = `${originalLeft + 20}px`;
-                    clone.style.top = `${originalTop + 20}px`;
-                    
-                    // Add event listeners
-                    clone.addEventListener('mousedown', startDrag);
-                    const resizeHandles = clone.querySelectorAll('.resize-handle');
-                    
-                    resizeHandles.forEach(handle => {
-                        const position = handle.dataset.position;
-                        handle.addEventListener('mousedown', function(e) {
-                            e.stopPropagation();
-                            startResize(e, clone, position);
-                        });
-                    });
-                    
-                    // Add to canvas
-                    canvas.appendChild(clone);
-                    
-                    // Select the new element
-                    selectElement(clone);
-                }
-            });
-            
-            // Advanced customization options
-            // Add a keyboard shortcut listener for common operations
-            document.addEventListener('keydown', function(e) {
-                if (!selectedElement) return;
-                
-                // Delete with Delete or Backspace
-                if (e.key === 'Delete' || e.key === 'Backspace') {
-                    deleteButton.click();
-                }
-                
-                // Duplicate with Ctrl+D
-                if (e.key === 'd' && (e.ctrlKey || e.metaKey)) {
-                    e.preventDefault();
-                    duplicateButton.click();
-                }
-                
-                // Arrow keys for fine position adjustment
-                const step = e.shiftKey ? 10 : 1;
-                let newX = parseInt(selectedElement.style.left);
-                let newY = parseInt(selectedElement.style.top);
-                
-                switch (e.key) {
-                    case 'ArrowLeft':
-                        e.preventDefault();
-                        newX = Math.max(0, newX - step);
-                        break;
-                    case 'ArrowRight':
-                        e.preventDefault();
-                        newX += step;
-                        break;
-                    case 'ArrowUp':
-                        e.preventDefault();
-                        newY = Math.max(0, newY - step);
-                        break;
-                    case 'ArrowDown':
-                        e.preventDefault();
-                        newY += step;
-                        break;
-                }
-                
-                selectedElement.style.left = `${newX}px`;
-                selectedElement.style.top = `${newY}px`;
-                xInput.value = newX;
-                yInput.value = newY;
-            });
-            
-            // Helper function to handle z-index layering
-            function bringToFront() {
-                if (selectedElement) {
-                    // Get all elements
-                    const elements = document.querySelectorAll('.canvas-element');
-                    
-                    // Find the highest z-index
-                    let maxZ = 0;
-                    elements.forEach(el => {
-                        const z = parseInt(el.style.zIndex) || 0;
-                        maxZ = Math.max(maxZ, z);
-                    });
-                    
-                    // Set selected element to be on top
-                    selectedElement.style.zIndex = maxZ + 1;
-                }
-            }
-            
-            // Add bring to front button functionality
-            const bringToFrontBtn = document.createElement('button');
-            bringToFrontBtn.className = 'action-button';
-            bringToFrontBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6L12 2L16 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 10H22V21H2V10H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Bring to Front';
-            bringToFrontBtn.addEventListener('click', bringToFront);
-            
-            // Add to action buttons
-            const actionButtons = document.querySelector('.action-buttons');
-            actionButtons.appendChild(bringToFrontBtn);
-            
-            // Initialize canvas with a navbar
-            createComponent('navbar-with-menu', 0, 0);
-        });
+            // Prevent default behavior
+            event.preventDefault();
+        }
+    
+    // Initialize with existing event listeners and functions
+    window.onload = function() {
+        fetchComponents();
+    };
+</script>
+</body>
+</html>
