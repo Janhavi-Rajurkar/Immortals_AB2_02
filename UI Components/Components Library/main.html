@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionUI - Component Builder</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">VisionUI</div>
+        </div>
+        
+        <div class="device-selector">
+            <label for="deviceType">Device Preview:</label>
+            <select id="deviceType" class="device-select">
+                <option value="desktop">Desktop</option>
+                <option value="tablet">Tablet</option>
+                <option value="mobile">Mobile</option>
+            </select>
+            <div class="helper-text">Choose the device to preview your design</div>
+        </div>
+        
+        <div class="color-input">
+            <label for="colorPicker">Canvas Colors:</label>
+            <div class="color-preview">
+                <div class="color-preview-box primary-preview" id="primaryPreview"></div>
+                <div class="color-preview-box secondary-preview" id="secondaryPreview"></div>
+            </div>
+            <label for="colorPicker">Primary Color:</label>
+            <input type="color" id="colorPicker" value="#7e3fb3">
+            <label for="secondaryColor">Secondary Color:</label>
+            <input type="color" id="secondaryColor" value="#f0e6ff">
+            <button id="generateBtn" onclick="fetchComponents()">
+                Generate Components
+            </button>
+        </div>
+
+        <div id="loading" class="loading">Generating components</div>
+        <div class="components-library">Component Library</div>
+        <div class="component-grid" id="componentsContainer"></div>
+    </div>
+
+    <div class="design-area">
+        <div class="canvas desktop-view" id="canvas">
+            <!-- Sample components will be added here by the script -->
+        </div>
+    </div>
+</body>
+</html>
