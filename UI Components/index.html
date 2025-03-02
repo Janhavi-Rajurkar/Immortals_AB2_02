@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UI Builder - Drag and Drop Interface</title>
+    <title>VisionUI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="navbar">
-        <h1>UI Builder</h1>
+        <div class="brand">
+            <div class="logo">
+                <!-- <img src="UI Components\Logo1.png" alt="Logo" width="28" height="28"> -->
+            </div>
+            <h1>VisionUI</h1>
+        </div>
         <div class="actions">
             <button class="btn btn-outline" id="previewBtn">Preview</button>
             <button class="btn btn-primary" id="saveBtn">Save Design</button>
@@ -17,6 +22,11 @@
     
     <div class="components-panel">
         <h2 class="panel-title">Components</h2>
+        
+        <button id="explore-library" class="explore-btn">
+            <span class="explore-icon">🔍</span>
+            Explore Components Library
+        </button>
         
         <div class="component-group">
             <h3 class="panel-title">Layout</h3>
@@ -27,18 +37,61 @@
             </div>
         </div>
         
+        <!-- Rest of the code remains the same -->
         <div class="component-group">
             <h3 class="panel-title">Basic Elements</h3>
             <div class="component-list">
+<<<<<<< HEAD:Frontend/index.html
                 <div class="component-item" draggable="true" data-type="text">T Text</div>
                 <div class="component-item" draggable="true" data-type="heading">H Heading</div>
                 <div class="component-item" draggable="true" data-type="button">⬚ Button</div>
                 <div class="component-item" draggable="true" data-type="input">▭ Input</div>
                 <div class="component-item" draggable="true" data-type="image">🖼 Image</div>
+=======
+                <div class="component-item" draggable="true" data-type="text">
+                    <div class="component-icon">T</div>
+                    <span>Text</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="heading">
+                    <div class="component-icon">H</div>
+                    <span>Heading</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="button">
+                    <div class="component-icon">⬚</div>
+                    <span>Button</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="input">
+                    <div class="component-icon">▭</div>
+                    <span>Input</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="image">
+                    <div class="component-icon">🖼</div>
+                    <span>Image</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="component-group">
+            <h3 class="panel-title">Basic Components</h3>
+            <div class="component-list">
+                <div class="component-item" draggable="true" data-type="card">
+                    <div class="component-icon">⬞</div>
+                    <span>Card</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="navbar">
+                    <div class="component-icon">≡</div>
+                    <span>Navigation</span>
+                </div>
+                <div class="component-item" draggable="true" data-type="form">
+                    <div class="component-icon">⊡</div>
+                    <span>Form</span>
+                </div>
+>>>>>>> b3881dd9ce07e43e1030294767bf0d732952c1d8:UI Components/index.html
             </div>
         </div>
     </div>
     
+    <!-- Rest of the code remains the same -->
     <div class="canvas-area">
         <div class="canvas" id="canvas"></div>
     </div>

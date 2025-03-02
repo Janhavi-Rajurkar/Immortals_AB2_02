@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Frontend/script.js
 document.addEventListener('DOMContentLoaded', function () {
     const GEMINI_API_KEY = "AIzaSyAtV-57N7QWcTaKYbFdxACeTnHtnMBCATo"; // Replace with your actual API key
 
@@ -56,7 +57,299 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+=======
+let selectedElement = null;
+function setupAISuggestions() {
+    // Create the suggestion button if it doesn't exist
+    if (!document.getElementById('aiSuggestionBtn')) {
+        const suggestionBtn = document.createElement('button');
+        suggestionBtn.id = 'aiSuggestionBtn';
+        suggestionBtn.className = 'btn btn-primary';
+        suggestionBtn.textContent = 'Get AI Suggestions';
+        suggestionBtn.style.position = 'absolute';
+        suggestionBtn.style.top = '70px';
+        suggestionBtn.style.right = '10px';
+        document.body.appendChild(suggestionBtn);
         
+        suggestionBtn.addEventListener('click', requestAISuggestions);
+    }
+}
+// // Add this function to handle the suggestion request
+// async function requestAISuggestions() {
+//     if (!selectedElement) {
+//         alert('Please select an element to get suggestions for.');
+//         return;
+//     }
+    
+//     const btn = document.getElementById('aiSuggestionBtn');
+//     btn.textContent = 'Fetching...';
+//     btn.disabled = true;
+    
+//     try {
+//         const type = selectedElement.dataset.type;
+//         const props = JSON.parse(selectedElement.dataset.properties || '{}');
+//         const prompt = `Give me UI/UX design suggestions for improving a ${type} component with these properties: ${JSON.stringify(props)}. Suggest specific color combinations, spacing, typography, and layout improvements.`;
+        
+//         const suggestion = await getDesignSuggestions(prompt);
+        
+//         // Create a modal to display suggestions
+//         const modal = document.createElement('div');
+//         modal.style.position = 'fixed';
+//         modal.style.top = '50%';
+//         modal.style.left = '50%';
+//         modal.style.transform = 'translate(-50%, -50%)';
+//         modal.style.background = '#fff';
+//         modal.style.padding = '20px';
+//         modal.style.borderRadius = '8px';
+//         modal.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+//         modal.style.zIndex = '1000';
+//         modal.style.maxWidth = '500px';
+//         modal.style.maxHeight = '80vh';
+//         modal.style.overflow = 'auto';
+        
+//         modal.innerHTML = `
+//             <h3>AI Design Suggestions</h3>
+//             <div style="margin: 15px 0; white-space: pre-line;">${suggestion}</div>
+//             <button id="closeModalBtn" style="background: #7c5dfa; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+//         `;
+        
+//         document.body.appendChild(modal);
+        
+//         document.getElementById('closeModalBtn').addEventListener('click', () => {
+//             document.body.removeChild(modal);
+//         });
+//     } catch (error) {
+//         console.error('Error getting AI suggestions:', error);
+//         alert('Failed to get AI suggestions. See console for details.');
+//     } finally {
+//         btn.textContent = 'Get AI Suggestions';
+//         btn.disabled = false;
+//     }
+// }
+
+async function requestAISuggestions() {
+    if (!selectedElement) {
+        alert('Please select an element to get suggestions for.');
+        return;
+    }
+    
+    const btn = document.getElementById('aiSuggestionBtn');
+    btn.textContent = 'Fetching...';
+    btn.disabled = true;
+    
+    try {
+        const type = selectedElement.dataset.type;
+        const props = JSON.parse(selectedElement.dataset.properties || '{}');
+        
+        let suggestion = "";
+        
+        // If it's a text component, provide immediate text styling suggestions
+        if (type === 'text') {
+            // Generate random color
+            const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+            
+            suggestion = `I recommend making the following changes to your text component:
+            
+1. Make the text bold to increase readability and emphasis
+2. Change the text color to ${randomColor} to make it stand out
+3. Consider increasing the font size slightly for better visibility
+
+Would you like me to apply these changes for you?`;
+
+            // Create apply button for immediate action
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.background = '#fff';
+            modal.style.padding = '20px';
+            modal.style.borderRadius = '8px';
+            modal.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            modal.style.zIndex = '1000';
+            modal.style.maxWidth = '500px';
+            modal.style.maxHeight = '80vh';
+            modal.style.overflow = 'auto';
+            
+            modal.innerHTML = `
+                <h3>AI Design Suggestions</h3>
+                <div style="margin: 15px 0; white-space: pre-line;">${suggestion}</div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px;">
+                    <button id="applyChangesBtn" style="background: #7c5dfa; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Apply Changes</button>
+                    <button id="closeModalBtn" style="background: #f0f0f0; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            document.getElementById('applyChangesBtn').addEventListener('click', () => {
+                // Apply the suggested changes
+                const props = JSON.parse(selectedElement.dataset.properties || '{}');
+                props.fontWeight = 'bold';
+                props.color = randomColor;
+                
+                // Get current font size and increase it
+                let currentSize = props.fontSize || '16px';
+                currentSize = parseInt(currentSize);
+                if (isNaN(currentSize)) currentSize = 16; // fallback if parsing fails
+                props.fontSize = `${currentSize + 2}px`;
+                
+                selectedElement.dataset.properties = JSON.stringify(props);
+                
+                // Directly apply changes to the text element
+                const textElement = selectedElement.querySelector('.text-component');
+                if (textElement) {
+                    textElement.style.fontWeight = 'bold';
+                    textElement.style.color = randomColor;
+                    textElement.style.fontSize = props.fontSize;
+                }
+                
+                // Update the component - call this function to ensure changes are applied
+                updateComponentFromProps();
+                
+                // Generate preview to see updates in preview pane
+                generatePreview();
+                
+                // Close the modal
+                document.body.removeChild(modal);
+            });
+            
+            document.getElementById('closeModalBtn').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+        } else {
+            // For other elements, fetch suggestions from API
+            const prompt = `Give me UI/UX design suggestions for improving a ${type} component with these properties: ${JSON.stringify(props)}. Suggest specific color combinations, spacing, typography, and layout improvements.`;
+            
+            suggestion = await getDesignSuggestions(prompt);
+            
+            // Create a modal to display suggestions
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.background = '#fff';
+            modal.style.padding = '20px';
+            modal.style.borderRadius = '8px';
+            modal.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            modal.style.zIndex = '1000';
+            modal.style.maxWidth = '500px';
+            modal.style.maxHeight = '80vh';
+            modal.style.overflow = 'auto';
+            
+            modal.innerHTML = `
+                <h3>AI Design Suggestions</h3>
+                <div style="margin: 15px 0; white-space: pre-line;">${suggestion}</div>
+                <button id="closeModalBtn" style="background: #7c5dfa; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close</button>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            document.getElementById('closeModalBtn').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+        }
+    } catch (error) {
+        console.error('Error getting AI suggestions:', error);
+        alert('Failed to get AI suggestions. See console for details.');
+    } finally {
+        btn.textContent = 'Get AI Suggestions';
+        btn.disabled = false;
+    }
+}
+
+// Fix the getDesignSuggestions function
+async function getDesignSuggestions(prompt) {
+    try {
+        const GEMINI_API_KEY = 'AIzaSyDPsUJuM6YAzETmrM-YeOnGMkqEe3sIw3U';
+        
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }]
+            })
+        });
+>>>>>>> b3881dd9ce07e43e1030294767bf0d732952c1d8:UI Components/script.js
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Extract response correctly
+        return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No suggestion available.";
+    } catch (error) {
+        console.error("Error fetching AI suggestions:", error);
+        return "Failed to fetch suggestions. Check console for details.";
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+//     // DOM Elements
+//    // document.addEventListener('DOMContentLoaded', function() {
+//         // OpenAI API Integration
+//        // document.addEventListener('DOMContentLoaded', function () {
+//             // Gemini API Key (Replace with your own key)
+//             const GEMINI_API_KEY = 'AIzaSyAtV-57N7QWcTaKYbFdxACeTnHtnmbcaTo';
+        
+//             async function getDesignSuggestions(prompt) {
+//                 try {
+//                     const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+//                         method: 'POST',
+//                         headers: {
+//                             'Content-Type': 'application/json'
+//                         },
+//                         body: JSON.stringify({
+//                             contents: [{ parts: [{ text: prompt }] }]
+//                         })
+//                     });
+            
+//                     if (!response.ok) {
+//                         throw new Error(`HTTP error! Status: ${response.status}`);
+//                     }
+            
+//                     const data = await response.json();
+                    
+//                     // Extract response correctly
+//                     return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No suggestion available.";
+//                 } catch (error) {
+//                     console.error("Error fetching AI suggestions:", error);
+//                     return "Failed to fetch suggestions. Check console for details.";
+//                 }
+//             }
+            
+//             // UI Integration for AI suggestions
+//             const suggestionBtn = document.createElement('button');
+//             suggestionBtn.textContent = 'Get AI Suggestions';
+//             suggestionBtn.style.position = 'absolute';
+//             suggestionBtn.style.top = '10px';
+//             suggestionBtn.style.right = '10px';
+//             document.body.appendChild(suggestionBtn);
+        
+//             suggestionBtn.addEventListener('click', async () => {
+//                 if (!selectedElement) {
+//                     alert('Select an element to get suggestions.');
+//                     return;
+//                 }
+        
+//                 const type = selectedElement.dataset.type;
+//                 const props = JSON.parse(selectedElement.dataset.properties || '{}');
+//                 const prompt = `Give me UI/UX design suggestions for a ${type} component with these properties: ${JSON.stringify(props)}`;
+        
+//                 suggestionBtn.textContent = 'Fetching...';
+//                 const suggestion = await getDesignSuggestions(prompt);
+//                 suggestionBtn.textContent = 'Get AI Suggestions';
+        
+//                 alert(`AI Suggestion: ${suggestion}`);
+//             });
+        
+setupAISuggestions();
         // ORIGINAL SCRIPT (Your full 700+ lines remain intact below this)
     
       
@@ -69,7 +362,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Variables
     let draggedElement = null;
-    let selectedElement = null;
     let elementCounter = 0;
     let isDragging = false;
     let isResizing = false;
