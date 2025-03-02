@@ -1,62 +1,61 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-   // document.addEventListener('DOMContentLoaded', function() {
-        // OpenAI API Integration
-       // document.addEventListener('DOMContentLoaded', function () {
-            // Gemini API Key (Replace with your own key)
-            const GEMINI_API_KEY = 'AIzaSyAtV-57N7QWcTaKYbFdxACeTnHtnmbcaTo';
-        
-            async function getDesignSuggestions(prompt) {
-                try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }]
-                        })
-                    });
-            
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-            
-                    const data = await response.json();
-                    
-                    // Extract response correctly
-                    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No suggestion available.";
-                } catch (error) {
-                    console.error("Error fetching AI suggestions:", error);
-                    return "Failed to fetch suggestions. Check console for details.";
-                }
-            }
-            
-            // UI Integration for AI suggestions
-            const suggestionBtn = document.createElement('button');
-            suggestionBtn.textContent = 'Get AI Suggestions';
-            suggestionBtn.style.position = 'absolute';
-            suggestionBtn.style.top = '10px';
-            suggestionBtn.style.right = '10px';
-            document.body.appendChild(suggestionBtn);
-        
-            suggestionBtn.addEventListener('click', async () => {
-                if (!selectedElement) {
-                    alert('Select an element to get suggestions.');
-                    return;
-                }
-        
-                const type = selectedElement.dataset.type;
-                const props = JSON.parse(selectedElement.dataset.properties || '{}');
-                const prompt = `Give me UI/UX design suggestions for a ${type} component with these properties: ${JSON.stringify(props)}`;
-        
-                suggestionBtn.textContent = 'Fetching...';
-                const suggestion = await getDesignSuggestions(prompt);
-                suggestionBtn.textContent = 'Get AI Suggestions';
-        
-                alert(`AI Suggestion: ${suggestion}`);
+document.addEventListener('DOMContentLoaded', function () {
+    const GEMINI_API_KEY = "AIzaSyAtV-57N7QWcTaKYbFdxACeTnHtnMBCATo"; // Replace with your actual API key
+
+    async function getDesignSuggestions(prompt) {
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                })
             });
-        
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("API Error Response:", errorData);
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.error?.message || 'Unknown error'}`);
+            }
+
+            const data = await response.json();
+            console.log("API Response Data:", data);
+
+            return data?.candidates?.[0]?.content?.parts?.[0]?.text || "No suggestion available.";
+        } catch (error) {
+            console.error("Error fetching AI suggestions:", error);
+            return "Here’s a general suggestion: Ensure the design is consistent with your brand guidelines and user expectations.";
+        }
+    }
+
+    // UI Integration for AI suggestions
+    const suggestionBtn = document.getElementById('ai-suggestion-btn');
+    const aiSuggestionText = document.getElementById('ai-suggestion');
+
+    if (suggestionBtn && aiSuggestionText) {
+        suggestionBtn.addEventListener('click', async () => {
+            if (!selectedElement) {
+                alert('Select an element to get suggestions.');
+                return;
+            }
+
+            const type = selectedElement.dataset.type;
+            const props = JSON.parse(selectedElement.dataset.properties || '{}');
+            const prompt = `Give me UI/UX design suggestions for a ${type} component with these properties: ${JSON.stringify(props)}`;
+
+            suggestionBtn.textContent = 'Fetching...';
+            const suggestion = await getDesignSuggestions(prompt);
+            suggestionBtn.textContent = 'Get AI Suggestions';
+
+            aiSuggestionText.textContent = suggestion;
+        });
+    } else {
+        console.error("AI suggestion button or text element not found in the DOM.");
+    }
+
+
+
         
         // ORIGINAL SCRIPT (Your full 700+ lines remain intact below this)
     

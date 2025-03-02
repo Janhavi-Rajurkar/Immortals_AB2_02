@@ -21,62 +21,20 @@
         <div class="component-group">
             <h3 class="panel-title">Layout</h3>
             <div class="component-list">
-                <div class="component-item" draggable="true" data-type="container">
-                    <div class="component-icon">⊞</div>
-                    <span>Container</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="row">
-                    <div class="component-icon">⋐</div>
-                    <span>Row</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="column">
-                    <div class="component-icon">⋑</div>
-                    <span>Column</span>
-                </div>
+                <div class="component-item" draggable="true" data-type="container">⊞ Container</div>
+                <div class="component-item" draggable="true" data-type="row">⋐ Row</div>
+                <div class="component-item" draggable="true" data-type="column">⋑ Column</div>
             </div>
         </div>
         
         <div class="component-group">
             <h3 class="panel-title">Basic Elements</h3>
             <div class="component-list">
-                <div class="component-item" draggable="true" data-type="text">
-                    <div class="component-icon">T</div>
-                    <span>Text</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="heading">
-                    <div class="component-icon">H</div>
-                    <span>Heading</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="button">
-                    <div class="component-icon">⬚</div>
-                    <span>Button</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="input">
-                    <div class="component-icon">▭</div>
-                    <span>Input</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="image">
-                    <div class="component-icon">🖼</div>
-                    <span>Image</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="component-group">
-            <h3 class="panel-title">Components</h3>
-            <div class="component-list">
-                <div class="component-item" draggable="true" data-type="card">
-                    <div class="component-icon">⬞</div>
-                    <span>Card</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="navbar">
-                    <div class="component-icon">≡</div>
-                    <span>Navigation</span>
-                </div>
-                <div class="component-item" draggable="true" data-type="form">
-                    <div class="component-icon">⊡</div>
-                    <span>Form</span>
-                </div>
+                <div class="component-item" draggable="true" data-type="text">T Text</div>
+                <div class="component-item" draggable="true" data-type="heading">H Heading</div>
+                <div class="component-item" draggable="true" data-type="button">⬚ Button</div>
+                <div class="component-item" draggable="true" data-type="input">▭ Input</div>
+                <div class="component-item" draggable="true" data-type="image">🖼 Image</div>
             </div>
         </div>
     </div>
@@ -97,16 +55,12 @@
                 <div id="preview-content"></div>
             </div>
         </div>
-    </div>
-    
-    <div class="context-menu" id="contextMenu">
-        <div class="context-menu-item" data-action="cut">Cut</div>
-        <div class="context-menu-item" data-action="copy">Copy</div>
-        <div class="context-menu-item" data-action="paste">Paste</div>
-        <div class="context-menu-divider"></div>
-        <div class="context-menu-item" data-action="delete">Delete</div>
-        <div class="context-menu-item" data-action="bringToFront">Bring to Front</div>
-        <div class="context-menu-item" data-action="sendToBack">Send to Back</div>
+        
+        <div class="ai-suggestions">
+            <h3 class="suggestions-title">AI Design Suggestions</h3>
+            <p id="ai-suggestion">Select an element to get AI suggestions.</p>
+            <button id="ai-suggestion-btn">Get AI Suggestions</button>
+        </div>
     </div>
     
     <script src="script.js"></script>
